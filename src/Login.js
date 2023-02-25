@@ -52,6 +52,11 @@ function Login() {
           </Link>
         </div>
       </nav>
+      <div className='mt-2 text-center'>
+        <h6>To login in reddit please fill the email and password as given below</h6>
+        <h4>Email: <span>user@gmail.com</span></h4>
+        <h4>Password: <span>user</span></h4>
+      </div>
       <section className='mt-5'>
         <div className="row">
           <div className="col-lg-3 col-md-6 col-sm-12 mx-auto">

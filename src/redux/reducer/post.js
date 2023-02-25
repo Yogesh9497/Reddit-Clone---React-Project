@@ -57,7 +57,7 @@ export const postSlice = createSlice({
           if(post.dislike_users.some(dislike=>dislike===action.payload.login_user)){
             post.dislike_users = post.dislike_users.filter(dislike=>dislike!==action.payload.login_user)
           }else{
-            post.dislike_users = [...post.like_users,action.payload.login_user]
+            post.dislike_users = [...post.dislike_users,action.payload.login_user]
           }
           return post;
         } else {
