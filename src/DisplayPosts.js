@@ -146,7 +146,7 @@ function DisplayPosts() {
                     <i
                       className={`${
                         checkDisLike(post.id)
-                          ? "fa-solid fa-thumbs-down text-primary"
+                          ? "fa-solid fa-thumbs-down text-danger"
                           : "fa-regular fa-thumbs-down"
                       } fa-lg me-2`}
                     ></i>

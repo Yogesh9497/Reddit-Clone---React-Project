@@ -11,7 +11,7 @@ const initialState = {
         "After he stopped getting work? Read many outlets that reported this back when they separated but recent stories are about him cheating?",
       like_users: ["Prince", "Rishabh"],
       dislike_users: ["yogesh, dharmu, mitesh, gopal"],
-      postedDate: new Date("2/16/2023")
+      postedDate: new Date("2/16/2023"),
     },
   ],
 };
@@ -31,7 +31,7 @@ export const postSlice = createSlice({
           postText:action.payload.postText,
           like_users: [],
           dislike_users: [],
-          postedDate: new Date()
+          postedDate: new Date(),
         },
       ];
     },
@@ -41,8 +41,10 @@ export const postSlice = createSlice({
         if (post.id === action.payload.id) {
           if(post.like_users.some(like=>like===action.payload.login_user)){
             post.like_users = post.like_users.filter(like=>like!==action.payload.login_user)
+            post.dislike_users = [...post.dislike_users,action.payload.login_user]
           }else{
             post.like_users = [...post.like_users,action.payload.login_user]
+            post.dislike_users = post.dislike_users.filter(dislike=>dislike!==action.payload.login_user)
           }
           return post;
         } else {
@@ -52,12 +54,15 @@ export const postSlice = createSlice({
     },
 
     post_dislike: (state,action)=>{
+
       state.posts = state.posts.map((post) => {
         if (post.id === action.payload.id) {
           if(post.dislike_users.some(dislike=>dislike===action.payload.login_user)){
             post.dislike_users = post.dislike_users.filter(dislike=>dislike!==action.payload.login_user)
+            post.like_users = [...post.like_users,action.payload.login_user]
           }else{
             post.dislike_users = [...post.dislike_users,action.payload.login_user]
+            post.like_users = post.like_users.filter(like=>like!==action.payload.login_user)
           }
           return post;
         } else {
